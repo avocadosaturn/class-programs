@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Section IV — Posterior of the Galaxy–Halo Connection Parameters</title>
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<style>
+  body { max-width: 760px; margin: 3rem auto; padding: 0 1.2rem;
+         font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+         color: #1a1a1a; background: #fdfdfc; }
+  h1 { font-size: 1.6rem; border-bottom: 2px solid #eee; padding-bottom: .4rem; }
+  h2 { font-size: 1.25rem; margin-top: 2.2rem; color: #003a70; }
+  code { background: #f2f2ef; padding: .1em .35em; border-radius: 4px; font-size: .92em; }
+  blockquote { border-left: 3px solid #cbd5e0; margin: 1.2rem 0; padding: .3rem 1rem;
+               color: #444; background: #f7f7f5; }
+  table { border-collapse: collapse; margin: 1rem 0; font-size: .93rem; }
+  th, td { border: 1px solid #ddd; padding: .4rem .7rem; text-align: left; vertical-align: top; }
+  th { background: #f2f2ef; }
+  .paper { color: #666; font-size: .9rem; }
+  .caveat { font-size: .9rem; color: #7a5900; background: #fdf6e3; border-left: 3px solid #d9b70d;
+            padding: .5rem 1rem; margin: 1.2rem 0; }
+</style>
+</head>
+<body>
+
+<h1>Section IV — The "Posterior Distribution of the Galaxy–Halo Connection Parameters"</h1>
+<p class="paper">Tan, Dekker &amp; Drlica-Wagner (2025), PRD 111, 063079. The model is from Nadler et al. (2020).</p>
+
+<p>The phrase has three parts worth unpacking separately: (1) the <strong>galaxy–halo connection model</strong>, (2) its <strong>parameters</strong>, and (3) what a <strong>posterior distribution</strong> over those parameters is. Let's take them in order.</p>
+
+<h2>1. What the galaxy–halo connection model does</h2>
+<p>Section III gave us a population of dark matter subhalos. But a subhalo is invisible — we only see the <em>galaxy</em> that may live inside it. The galaxy–halo connection model is the recipe that "paints" a galaxy onto each subhalo: given a subhalo, does it host a galaxy, how bright is it, how big is it, and would a survey actually detect it?</p>
+
+<p>Concretely, the predicted number of observable satellites is (Eq. 7):</p>
+
+$$n_{\rm sat} = \sum_i f_{{\rm gal},i}\,\times\,(1 - p_{{\rm disrupt},i})\,\times\,p_{{\rm detect},i}\,\times\,\beta_i$$
+
+<p>where $i$ runs over subhalos, $f_{\rm gal}$ is the probability the subhalo hosts a galaxy, $p_{\rm disrupt}$ the probability it was destroyed by baryonic effects, $p_{\rm detect}$ the survey detection probability, and $\beta$ the WDM suppression from Section II.</p>
+
+<h2>2. The parameters $\theta_{\rm model}$</h2>
+<p>Each ingredient above is not known exactly — it is controlled by a handful of tunable numbers. The paper writes the full set as</p>
+
+$$\theta_{\rm model} = \{\alpha,\ \sigma_M,\ \mathcal{A},\ n,\ \sigma_{\log R},\ M_{50},\ \sigma_{\rm gal},\ B\}.$$
+
+<p>Roughly, these parametrize four physical relations (details in Nadler et al. 2020):</p>
+
+<table>
+  <tr><th>Relation</th><th>Parameters</th><th>What they control</th></tr>
+  <tr><td>Luminosity ↔ halo</td><td>$\alpha,\ \sigma_M$</td><td>faint-end slope of the satellite luminosity function, and the scatter around the mean brightness–halo relation</td></tr>
+  <tr><td>Galaxy size ↔ halo</td><td>$\mathcal{A},\ n,\ \sigma_{\log R}$</td><td>amplitude and slope of the galaxy-size relation, plus its scatter</td></tr>
+  <tr><td>Occupation fraction</td><td>$M_{50},\ \sigma_{\rm gal}$</td><td>halo mass at which 50% of halos host a galaxy, and how sharp that cutoff is ($f_{\rm gal}$)</td></tr>
+  <tr><td>Baryonic disruption</td><td>$B$</td><td>strength of subhalo disruption by the galactic disk ($p_{\rm disrupt}$)</td></tr>
+</table>
+
+<p class="caveat">The exact definition of each symbol is set in Nadler et al. (2020); the grouping above is the physical intuition, not verbatim definitions. If you want, I can pull the precise definitions from that reference.</p>
+
+<h2>3. What a "posterior distribution" is</h2>
+<p>This is the Bayesian-statistics core. We have model parameters $\theta$ and data $D$ (the observed satellite counts). We want to know: <em>given what we observed, which parameter values are plausible?</em> That is captured by the <strong>posterior distribution</strong> $P(\theta \mid D)$ — a probability distribution over parameter space. Bayes' theorem builds it:</p>
+
+$$\underbrace{P(\theta \mid D)}_{\text{posterior}} \;=\; \frac{\overbrace{P(D \mid \theta)}^{\text{likelihood}}\;\overbrace{P(\theta)}^{\text{prior}}}{\underbrace{P(D)}_{\text{evidence}}} \;\propto\; P(D \mid \theta)\,P(\theta)$$
+
+<ul>
+  <li><strong>Prior</strong> $P(\theta)$: what we believed about the parameters <em>before</em> looking at the data (e.g. allowed ranges).</li>
+  <li><strong>Likelihood</strong> $P(D \mid \theta)$: how probable the observed counts are <em>if</em> the parameters were $\theta$. Here the paper bins satellites by absolute magnitude and surface brightness and assumes the count in each bin is <strong>Poisson</strong>:
+  $$P(D\mid\theta) = \prod_{\rm bins} \frac{\lambda_b^{\,k_b}\,e^{-\lambda_b}}{k_b!},$$
+  where $\lambda_b$ is the predicted count in bin $b$ (from $n_{\rm sat}$) and $k_b$ the observed count.</li>
+  <li><strong>Posterior</strong> $P(\theta \mid D)$: the updated belief <em>after</em> folding in the data — the answer we actually want.</li>
+</ul>
+
+<p>So the "posterior distribution of the galaxy–halo connection parameters" is simply: <em>the probability distribution over the 8 parameters $\theta_{\rm model}$ (plus $f_{\rm WDM}$) that is consistent with the observed DES and PS1 satellite counts.</em></p>
+
+<h2>4. "Sample the posterior" with EMCEE</h2>
+<p>The posterior lives in a ~9-dimensional space and has no closed form, so you cannot just write it down. Instead you <strong>sample</strong> it: draw many parameter sets $\theta$ in proportion to their posterior probability, using a Markov Chain Monte Carlo (MCMC) sampler — here <code>emcee</code>. The cloud of samples <em>is</em> the posterior: dense where parameters are likely, sparse where unlikely.</p>
+
+<p>In Section IV the procedure is:</p>
+<blockquote>
+  Fix a WDM mass $m_{\rm WDM}$ → let the WDM fraction $f_{\rm WDM}$ (and the 8 model parameters) vary → run <code>emcee</code> to sample the posterior → the resulting distribution over $f_{\rm WDM}$ tells you which fractions are allowed by the data, giving the constraint.
+</blockquote>
+
+<p>The shaded bands in Fig. 2 are a direct visualization of this: they show the spread in predicted luminosity functions as $\theta_{\rm model}$ ranges over its posterior.</p>
+
+</body>
+</html>

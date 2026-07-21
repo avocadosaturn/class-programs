@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Section II — Subhalo Mass Function</title>
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<style>
+  body { max-width: 760px; margin: 3rem auto; padding: 0 1.2rem;
+         font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+         color: #1a1a1a; background: #fdfdfc; }
+  h1 { font-size: 1.6rem; border-bottom: 2px solid #eee; padding-bottom: .4rem; }
+  h2 { font-size: 1.25rem; margin-top: 2.2rem; color: #003a70; }
+  code { background: #f2f2ef; padding: .1em .35em; border-radius: 4px; font-size: .92em; }
+  blockquote { border-left: 3px solid #cbd5e0; margin: 1.2rem 0; padding: .3rem 1rem;
+               color: #444; background: #f7f7f5; }
+  .paper { color: #666; font-size: .9rem; }
+</style>
+</head>
+<body>
+
+<h1>Section II — The Subhalo Mass Function</h1>
+<p class="paper">Tan, Dekker &amp; Drlica-Wagner (2025), <em>Mixed warm dark matter constraints using Milky Way satellite galaxy counts</em>, PRD 111, 063079.</p>
+
+<h2>Vocabulary</h2>
+<ul>
+  <li><strong>Halo:</strong> dark matter clumps into gravitationally bound blobs called <em>halos</em>. A galaxy like the Milky Way sits inside a large dark matter halo.</li>
+  <li><strong>Subhalo:</strong> big halos form by swallowing smaller ones, which survive as bound clumps <em>orbiting inside</em> the host halo. The Milky Way's halo contains thousands of these.</li>
+  <li><strong>Why we care:</strong> the faint satellite galaxies orbiting the Milky Way live inside these subhalos. Counting subhalos predicts how many satellite galaxies there should be — the whole strategy of the paper.</li>
+</ul>
+
+<h2>The "mass function"</h2>
+<p>A <strong>mass function</strong> describes <em>how many objects there are of each mass</em>. It answers: "How many subhalos have a mass around $M$?" The paper writes it as:</p>
+
+$$\frac{dN_{\rm sub}}{dM}$$
+
+<p>Read this as: <em>the number of subhalos ($dN_{\rm sub}$) per unit mass interval ($dM$)</em> — a continuous histogram of subhalo masses.</p>
+<ul>
+  <li>Number of subhalos with mass between $M$ and $M+dM$ is $\dfrac{dN_{\rm sub}}{dM}\,dM$.</li>
+  <li>Total number in a mass range: integrate over that range.</li>
+</ul>
+<p>Key fact: <strong>there are many more small subhalos than large ones</strong> — the mass function rises steeply toward low masses.</p>
+
+<h2>Why it's central to this paper</h2>
+<p>The dark matter physics shows up at the <strong>low-mass end</strong>:</p>
+<ul>
+  <li><strong>Cold dark matter (CDM):</strong> structure forms down to tiny scales, so the mass function keeps rising toward small $M$ — lots of little subhalos.</li>
+  <li><strong>Warm dark matter (WDM):</strong> fast-moving particles "free-stream" and erase small clumps, so the mass function is <strong>suppressed</strong> at low masses — fewer small subhalos.</li>
+</ul>
+
+<p>Equation (1) states this cleanly:</p>
+
+$$\left(\frac{dN_{\rm sub}}{dM}\right)_{\rm MWDM} = \beta(M, \theta_{\rm WDM}, f_{\rm WDM}) \left(\frac{dN_{\rm sub}}{dM}\right)_{\rm CDM}$$
+
+<p>In words: <em>take the CDM subhalo mass function and multiply it by a <strong>suppression function</strong> $\beta$ to get the warm-dark-matter version.</em> Here $\beta$ is between 0 and 1: at high masses $\beta \approx 1$ (no change); at low masses $\beta$ drops below 1 (subhalos wiped out).</p>
+
+<blockquote>
+  dark matter properties &rarr; shape of the subhalo mass function &rarr; number of subhalos &rarr; number of satellite galaxies &rarr; compare to DES/PS1 observations &rarr; constrain dark matter.
+</blockquote>
+
+</body>
+</html>
